@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskRequest;
+use App\Mail\SendEmail;
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
@@ -19,9 +21,13 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): Task
+    public function store(TaskRequest $request): Task
     {
-        return Task::create($request->all());
+        $task = Task::create($request->all());
+
+        Mail::to('rannie.ollit@born.mt')->send(new SendEmail());
+
+        return $task;
     }
 
     /**
@@ -35,7 +41,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task): Task
+    public function update(TaskRequest $request, Task $task): Task
     {
         return tap($task)->update($request->all());
     }
