@@ -9,4 +9,6 @@ Route::get('/', function () {
 });
 
 Route::get('/hi', [HomeController::class, 'index']);
-Route::get('/client', [ClientController::class, 'index'])->name('client.index');
+Route::get('/clients', [ClientController::class, 'index'])->name('client.index');
+Route::get('/clients/create', [ClientController::class, 'create'])->name('client.create');
+Route::post('/clients/save', [ClientController::class, 'save'])->name('client.save');
