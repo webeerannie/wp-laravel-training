@@ -10,7 +10,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hi', [HomeController::class, 'index']);
+
 Route::get('/clients', [ClientController::class, 'index'])->name('client.index')->middleware('sample');
 Route::get('/clients/create', [ClientController::class, 'create'])->name('client.create');
 Route::post('/clients/save', [ClientController::class, 'save'])->name('client.save');
