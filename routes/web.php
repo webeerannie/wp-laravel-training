@@ -19,5 +19,5 @@ Route::put('/clients/{id}', [ClientController::class, 'update'])->name('client.u
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')
+Route::get('/home', [HomeController::class, 'index'])->name('home')
 ->middleware(['sample', 'verified']);
